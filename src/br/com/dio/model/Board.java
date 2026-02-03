@@ -2,8 +2,6 @@ package br.com.dio.model;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
-
 import static br.com.dio.model.GameStatusEnum.COMPLETE;
 import static br.com.dio.model.GameStatusEnum.INCOPLETE;
 import static br.com.dio.model.GameStatusEnum.NON_STARTED;
@@ -11,7 +9,6 @@ import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
 public class Board {
-
     private final List<List<Space>> spaces;
 
     public Board(List<List<Space>> spaces) {
@@ -22,38 +19,35 @@ public class Board {
         return spaces;
     }
 
-
-    public  GameStatusEnum getStatus() {
+    public GameStatusEnum getStatus() {
         if (spaces.stream().flatMap(Collection::stream)
-            .noneMatch(s -> !s.isFixed() && nonNull(s.getActual()))) {
+                .noneMatch(s -> !s.isFixed() && nonNull(s.getActual()))) {
             return NON_STARTED;
         }
-
         return spaces.stream().flatMap(Collection::stream)
-        .anyMatch(s -> isNull(s.getActual())) ? INCOPLETE : COMPLETE;
+                .anyMatch(s -> isNull(s.getActual())) ? INCOPLETE : COMPLETE;
     }
 
     public boolean hasErrord() {
-        if (getStatus() == NON_STARTED) {
-            return false;
-        }
+        if (getStatus() == NON_STARTED) return false;
         return spaces.stream().flatMap(Collection::stream)
-        .anyMatch(s -> nonNull(s.getActual()) && !s.getActual()
-        .equals(s.getExpect()));
+                .anyMatch(s -> nonNull(s.getActual()) && !s.getActual().equals(s.getExpect()));
     }
 
-    public boolean changeValue(final  int col, final int row, final Integer value) {
-        var space = spaces.get(col).get(row);
+    public boolean changeValue(final int col, final int row, final Integer value) {
+        // CORREÇÃO: Invertido de get(col).get(row) para get(row).get(col)
+        // Isso garante que acessamos a Linha (row) correta e a Coluna (col) correta
+        var space = spaces.get(row).get(col);
         if (space.isFixed()) {
             return false;
         }
-
         space.setActual(value);
         return true;
     }
 
-    public boolean clearValue(final  int col, final int row) {
-        var space = spaces.get(col).get(row);
+    public boolean clearValue(final int col, final int row) {
+        // CORREÇÃO: Mesmo ajuste aqui
+        var space = spaces.get(row).get(col);
         if (space.isFixed()) {
             return false;
         }

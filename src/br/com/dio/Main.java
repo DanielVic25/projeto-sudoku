@@ -171,8 +171,9 @@ public class Main {
             board.reset();
         } else if (board.hasErrord()) {
             System.out.println("Seu jogo contem erros, verifique sue board e o ajuste-o");
-        } else {
+        } else{
             System.out.println("Você ainda precisa prencher algum espaço");
+            System.out.println("preencha o espaço direito");
         }
 
     }

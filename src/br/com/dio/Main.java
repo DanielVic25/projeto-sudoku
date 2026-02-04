@@ -15,8 +15,10 @@ import static java.util.Objects.nonNull;
 
 public class Main {
     private final static Scanner scanner = new Scanner(System.in);
+    
     private static Board board;
-    private final static int BOARD_LIMIT = 9; // Constante correta para 9x9
+
+    private final static int BOARD_LIMIT = 9;
 
     public static void main(String[] args) {
         final var position = Stream.of(args)
@@ -59,7 +61,6 @@ public class Main {
         }
 
         List<List<Space>> spaces = new ArrayList<>();
-        // CORREÇÃO: i < BOARD_LIMIT (9) para garantir 9 linhas, não 8
         for (int i = 0; i < BOARD_LIMIT; i++) {
             spaces.add(new ArrayList<>());
             for (int j = 0; j < BOARD_LIMIT; j++) {

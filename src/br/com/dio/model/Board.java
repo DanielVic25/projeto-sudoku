@@ -35,8 +35,6 @@ public class Board {
     }
 
     public boolean changeValue(final int col, final int row, final Integer value) {
-        // CORREÇÃO: Invertido de get(col).get(row) para get(row).get(col)
-        // Isso garante que acessamos a Linha (row) correta e a Coluna (col) correta
         var space = spaces.get(row).get(col);
         if (space.isFixed()) {
             return false;
@@ -46,7 +44,7 @@ public class Board {
     }
 
     public boolean clearValue(final int col, final int row) {
-        // CORREÇÃO: Mesmo ajuste aqui
+
         var space = spaces.get(row).get(col);
         if (space.isFixed()) {
             return false;

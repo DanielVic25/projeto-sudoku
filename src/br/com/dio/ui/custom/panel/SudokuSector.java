@@ -2,14 +2,14 @@ package br.com.dio.ui.custom.panel;
 
 import br.com.dio.ui.custom.input.Numbertext;
 
-import javax.swing.JButton;
+import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.util.List;
 
 import static java.awt.Color.black;
 
-public class SudokuSector extends JButton {
+public class SudokuSector extends JPanel {
 
     public SudokuSector(final List<Numbertext> textFields) {
         var dimension = new Dimension(170, 170);
